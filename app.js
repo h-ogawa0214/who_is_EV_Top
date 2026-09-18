@@ -201,6 +201,19 @@
       if (lab) { lab.textContent = Math.round(last); lab.setAttribute('y', (y(last) - 18).toFixed(1)); }
     });
     // X軸ラベル
+    var xlabelsG = root.querySelector('[data-xlabels]');
+    if (xlabelsG) {
+      // 年数が増えても動的に対応（text要素を再生成）
+      xlabelsG.innerHTML = '';
+      yrs.forEach(function (yr, i) {
+        var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t.textContent = yr;
+        t.setAttribute('x', x(i));
+        t.setAttribute('y', '378');
+        t.setAttribute('text-anchor', 'middle');
+        xlabelsG.appendChild(t);
+      });
+    }
     var ticks = root.querySelectorAll('[data-xlabels] text');
     yrs.forEach(function (yr, i) { if (ticks[i]) { ticks[i].textContent = yr; ticks[i].setAttribute('x', x(i)); } });
   }
