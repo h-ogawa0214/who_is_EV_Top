@@ -50,7 +50,7 @@
     if (io) io.disconnect();
     io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { play(en.target); io.unobserve(en.target); } });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    }, { rootMargin: '0px 0px 0px 0px', threshold: 0 });
     nodes.forEach(function (n) { io.observe(n); });
     setTimeout(function () { // 万一 IO が動かなくても内容は見える
       if (!nodes.some(function (n) { return n.dataset.played; })) nodes.forEach(play);
